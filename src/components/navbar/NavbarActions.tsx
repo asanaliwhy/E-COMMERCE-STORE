@@ -10,7 +10,7 @@ export default function NavbarActions() {
       <ThemeToggle />
       <WishlistButton count={0} />
       <CartButton count={0} />
-      <ProfileMenu />
+      <ProfileMenu isLoggedIn={false} />
     </div>
   );
 }

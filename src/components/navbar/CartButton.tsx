@@ -9,9 +9,8 @@ export default function CartButton({count}: CartButtonProps) {
   const displayCount: string | number = count > 99 ? "99+" : count;
   return (
     <Link href="/cart" className="relative flex items-center gap-2 p-2 text-neutral-600 hover:text-neutral-900 transition-colors" aria-label={`Shopping cart (${count === 1
-    ? "Wishlist (1 item)"
-    : `Wishlist (${count} items)`
-  });`}>
+    ? "Cart (1 item)"
+    : `Cart (${count} items)`}`}>
       <ShoppingCart size={25} aria-hidden="true"/>
       {count > 0 && (
         <span className="inline-flex items-center justify-center min-w-5 h-5 px-1 text-xs font-bold text-white bg-blue-600 rounded-full">
