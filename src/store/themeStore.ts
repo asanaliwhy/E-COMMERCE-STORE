@@ -1,0 +1,2 @@
+// Theme store configuration
+export {};

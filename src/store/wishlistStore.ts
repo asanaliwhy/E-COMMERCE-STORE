@@ -1,0 +1,2 @@
+// Wishlist store configuration
+export {};
