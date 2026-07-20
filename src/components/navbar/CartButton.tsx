@@ -8,12 +8,12 @@ interface CartButtonProps
 export default function CartButton({count}: CartButtonProps) {
   const displayCount: string | number = count > 99 ? "99+" : count;
   return (
-    <Link href="/cart" className="relative flex items-center gap-2 p-2 text-neutral-600 hover:text-neutral-900 transition-colors" aria-label={`Shopping cart (${count === 1
+    <Link href="/cart" className="relative flex items-center justify-center w-10 h-10 rounded-[var(--radius)] text-muted hover:text-foreground hover:bg-surface-secondary transition-all duration-200" aria-label={`Shopping cart (${count === 1
     ? "Cart (1 item)"
     : `Cart (${count} items)`}`}>
-      <ShoppingCart size={25} aria-hidden="true"/>
+      <ShoppingCart size={20} aria-hidden="true"/>
       {count > 0 && (
-        <span className="inline-flex items-center justify-center min-w-5 h-5 px-1 text-xs font-bold text-white bg-blue-600 rounded-full">
+        <span className="absolute -top-0.5 -right-0.5 inline-flex items-center justify-center min-w-[18px] h-[18px] px-1 text-[10px] font-bold text-accent-foreground bg-accent rounded-full shadow-sm animate-[fadeIn_0.2s_ease-out]">
           {displayCount}
         </span>
       )}

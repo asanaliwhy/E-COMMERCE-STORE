@@ -1,19 +1,33 @@
+"use client"
 import Button from "../ui/Button";
+import type { Product } from "@/types/product";
+import {useCart} from "@/hooks/useCart";
+import { ShoppingCart } from "lucide-react";
 
 interface AddToCartButtonProps {
   onClick?: () => void;
   disabled?: boolean;
   isLoading?: boolean;
+  id?: number;
+  className?: string;
+  product: Product;
+  quantity?: number;
 }
 
-export default function AddToCartButton({ onClick, disabled, isLoading }: AddToCartButtonProps) {
+export default function AddToCartButton({ id, onClick, disabled, isLoading, className, product, quantity }: AddToCartButtonProps) {
+  const { addToCart } = useCart();
+  const handleClick = () => {
+    addToCart(product, quantity),
+    onClick?.();
+  }
   return (
-    <Button
-      onClick={onClick}
+    <Button id = {id?.toString()}
+      onClick={handleClick}
       disabled={disabled || isLoading}
-      className="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-6 rounded-lg transition-colors duration-200 disabled:opacity-50 disabled:cursor-not-allowed"
+      className={`bg-accent hover:bg-accent-hover text-accent-foreground hover:shadow-lg hover:shadow-accent/25 transition-all duration-200 ${className ?? ""}`}
     >
-      {isLoading ? "Adding to Cart..." : "Add to Cart"}
-    </Button>
+      <ShoppingCart size={16} />
+      {isLoading ? "Adding..." : "Add to Cart"}
+  </Button>
   );
 }

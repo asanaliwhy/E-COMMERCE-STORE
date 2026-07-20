@@ -3,21 +3,22 @@ import type { ReactNode } from "react";
 interface BadgeProps {
   children: ReactNode;
   variant?: "default" | "success" | "warning" | "danger" | "info";
+  className?: string;
 }
 
-export default function Badge({ children, variant = "default" }: BadgeProps) {
-  const baseStyles = "inline-flex items-center px-2 py-0.5 rounded text-xs font-semibold select-none";
+export default function Badge({ children, variant = "default", className = "" }: BadgeProps) {
+  const baseStyles = "inline-flex items-center px-2.5 py-1 rounded-full text-xs font-semibold select-none tracking-wide transition-colors";
   
-  const variantStyles = {
-    default: "bg-neutral-100 text-neutral-800 dark:bg-neutral-800 dark:text-neutral-200",
-    success: "bg-green-100 text-green-800 dark:bg-green-900/30 dark:text-green-400",
-    warning: "bg-yellow-100 text-yellow-800 dark:bg-yellow-900/30 dark:text-yellow-400",
-    danger: "bg-red-100 text-red-800 dark:bg-red-900/30 dark:text-red-400",
-    info: "bg-blue-100 text-blue-800 dark:bg-blue-900/30 dark:text-blue-400",
+  const variantStyles: Record<NonNullable<BadgeProps["variant"]>, string> = {
+    default: "bg-surface-secondary text-foreground border border-border",
+    success: "bg-emerald-50 text-emerald-700 border border-emerald-200 dark:bg-emerald-950/40 dark:text-emerald-400 dark:border-emerald-800",
+    warning: "bg-amber-50 text-amber-700 border border-amber-200 dark:bg-amber-950/40 dark:text-amber-400 dark:border-amber-800",
+    danger: "bg-red-50 text-red-700 border border-red-200 dark:bg-red-950/40 dark:text-red-400 dark:border-red-800",
+    info: "bg-sky-50 text-sky-700 border border-sky-200 dark:bg-sky-950/40 dark:text-sky-400 dark:border-sky-800",
   };
 
   return (
-    <span className={`${baseStyles} ${variantStyles[variant]}`}>
+    <span className={`${baseStyles} ${variantStyles[variant]} ${className}`}>
       {children}
     </span>
   );

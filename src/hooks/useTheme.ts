@@ -1,4 +1,3 @@
-// Custom hook wrapper for theme store state
 import { useState, useEffect } from "react";
 
 export function useTheme() {
@@ -8,6 +7,15 @@ export function useTheme() {
     const savedTheme = localStorage.getItem("theme") as "light" | "dark" | null;
     if (savedTheme) {
       setTheme(savedTheme);
+      document.documentElement.classList.remove("light", "dark");
+      document.documentElement.classList.add(savedTheme);
+    } else {
+      // Check system pref
+      const isSystemDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+      const initialTheme = isSystemDark ? "dark" : "light";
+      setTheme(initialTheme);
+      document.documentElement.classList.remove("light", "dark");
+      document.documentElement.classList.add(initialTheme);
     }
   }, []);
 
@@ -15,6 +23,8 @@ export function useTheme() {
     const newTheme = theme === "light" ? "dark" : "light";
     setTheme(newTheme);
     localStorage.setItem("theme", newTheme);
+    document.documentElement.classList.remove("light", "dark");
+    document.documentElement.classList.add(newTheme);
   };
 
   return { theme, toggleTheme };

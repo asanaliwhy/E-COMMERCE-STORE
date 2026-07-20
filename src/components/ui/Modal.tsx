@@ -1,4 +1,5 @@
 import { type ReactNode, useEffect } from "react";
+import { X } from "lucide-react";
 
 interface ModalProps {
   isOpen: boolean;
@@ -27,24 +28,24 @@ export default function Modal({ isOpen, onClose, title, children }: ModalProps) 
   if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm">
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/40 backdrop-blur-md animate-[fadeIn_0.2s_ease-out]">
       <div
-        className="relative w-full max-w-md bg-white dark:bg-neutral-900 rounded-lg shadow-xl border border-neutral-200 dark:border-neutral-800 overflow-hidden flex flex-col animate-in fade-in zoom-in-95 duration-200"
+        className="relative w-full max-w-md bg-surface rounded-[var(--radius-xl)] shadow-xl border border-border overflow-hidden flex flex-col animate-[fadeIn_0.25s_ease-out]"
         role="dialog"
         aria-modal="true"
       >
-        <div className="flex items-center justify-between px-6 py-4 border-b border-neutral-100 dark:border-neutral-800">
-          <h2 className="text-lg font-semibold text-neutral-900 dark:text-white">
+        <div className="flex items-center justify-between px-6 py-5 border-b border-border">
+          <h2 className="text-lg font-semibold text-foreground tracking-tight">
             {title || "Modal"}
           </h2>
           <button
             onClick={onClose}
-            className="text-neutral-400 hover:text-neutral-600 dark:hover:text-neutral-200 transition-colors p-1 rounded-md"
+            className="rounded-full p-1.5 text-muted hover:text-foreground hover:bg-surface-secondary transition-all duration-200"
           >
-            ✕
+            <X size={18} />
           </button>
         </div>
-        <div className="px-6 py-4 overflow-y-auto max-h-[70vh]">
+        <div className="px-6 py-5 overflow-y-auto max-h-[70vh]">
           {children}
         </div>
       </div>

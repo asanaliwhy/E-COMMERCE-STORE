@@ -1,3 +1,4 @@
+"use client"
 import type { ReactNode } from "react";
 import Navbar from "./Navbar";
 import Footer from "./Footer";
@@ -8,7 +9,7 @@ interface LayoutProps {
 
 export default function Layout({ children }: LayoutProps) {
   return (
-    <div className="flex min-h-screen flex-col bg-white text-neutral-900 dark:bg-neutral-950 dark:text-neutral-50 transition-colors">
+    <div className="flex min-h-screen flex-col bg-background text-foreground transition-colors duration-300">
       <Navbar />
       <main className="flex-1 flex flex-col">
         {children}

@@ -1,43 +1,34 @@
+import { Minus, Plus } from "lucide-react";
+
 interface QuantitySelectorProps {
   quantity: number;
   onChange: (quantity: number) => void;
   max?: number;
+  min?: number;
 }
 
-export default function QuantitySelector({ quantity, onChange, max = 10 }: QuantitySelectorProps) {
-  const handleDecrement = () => {
-    if (quantity > 1) {
-      onChange(quantity - 1);
-    }
-  };
-
-  const handleIncrement = () => {
-    if (quantity < max) {
-      onChange(quantity + 1);
-    }
-  };
-
+export default function QuantitySelector({ quantity = 1, onChange, max = 99, min=1}: QuantitySelectorProps) {
   return (
-    <div className="flex items-center border border-neutral-300 rounded-md w-fit">
+    <div className="inline-flex items-center border border-border rounded-[var(--radius)] overflow-hidden bg-surface">
       <button
         type="button"
-        onClick={handleDecrement}
-        disabled={quantity <= 1}
-        className="px-3 py-1.5 hover:bg-neutral-50 active:bg-neutral-100 disabled:opacity-50 text-neutral-600 transition-colors"
+        className="cursor-pointer px-3.5 py-3 text-muted hover:text-foreground hover:bg-surface-secondary transition-all duration-200 disabled:opacity-30 disabled:cursor-not-allowed"
+        disabled={quantity <= min}
+        onClick={()=>{if(quantity > min){onChange(quantity - 1)}}}
       >
-        -
+        <Minus size={14} />
       </button>
-      <span className="px-4 py-1.5 text-sm font-medium text-neutral-900 min-w-8 text-center select-none">
+      <span className="w-12 text-center text-sm font-bold text-foreground tabular-nums border-x border-border py-3 bg-surface-secondary/30">
         {quantity}
       </span>
       <button
         type="button"
-        onClick={handleIncrement}
         disabled={quantity >= max}
-        className="px-3 py-1.5 hover:bg-neutral-50 active:bg-neutral-100 disabled:opacity-50 text-neutral-600 transition-colors"
+        className="cursor-pointer px-3.5 py-3 text-muted hover:text-foreground hover:bg-surface-secondary transition-all duration-200 disabled:opacity-30 disabled:cursor-not-allowed"
+        onClick={()=>{if(quantity < max){onChange(quantity + 1)}}}
       >
-        +
+        <Plus size={14} />
       </button>
     </div>
-  );
+  )
 }

@@ -6,18 +6,18 @@ import NavbarActions from "../navbar/NavbarActions";
 
 export default function Navbar() {
   return (
-    <header className="sticky top-0 z-50 border-b border-gray-100 bg-white/80 backdrop-blur-md">
+    <header className="sticky top-0 z-50 border-b border-border/60 bg-surface/70 backdrop-blur-xl backdrop-saturate-150 supports-[backdrop-filter]:bg-surface/60">
       <Container>
-        <nav className="flex h-16 items-center justify-between gap-6" aria-label="Main Navigation">
+        <nav className="flex h-16 items-center justify-between gap-4 lg:gap-8" aria-label="Main Navigation">
           <div className="flex items-center shrink-0">
             <Logo />
           </div>
 
-          <div className="flex-1 max-w-lg mx-2">
+          <div className="hidden md:flex flex-1 max-w-md mx-4">
             <SearchBar onSearch={(query)=>{console.log(query)}} placeholder="Search products..." />
           </div>
 
-          <ul className="flex items-center gap-6 shrink-0">
+          <ul className="hidden sm:flex items-center gap-1 shrink-0">
             <li>
               <NavbarLink href="/products">Products</NavbarLink>
             </li>

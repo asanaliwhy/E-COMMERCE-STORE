@@ -1,10 +1,12 @@
 export default function Spinner() {
   return (
-    <div
-      className="animate-spin rounded-full h-8 w-8 border-4 border-neutral-200 border-t-blue-600"
-      role="status"
-    >
-      <span className="sr-only">Loading...</span>
+    <div className="relative flex items-center justify-center">
+      <div
+        className="h-8 w-8 rounded-full border-[3px] border-border border-t-accent animate-spin"
+        role="status"
+      >
+        <span className="sr-only">Loading...</span>
+      </div>
     </div>
   );
 }

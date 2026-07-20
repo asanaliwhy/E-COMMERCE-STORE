@@ -8,14 +8,13 @@ interface WishlistButtonProps{
 export default function WishlistButton({count}: WishlistButtonProps) {
   const displayCount: string | number = count > 99 ? "99+" : count;
   return (
-    <Link href="/wishlist" className="p-2 text-neutral-600 hover:text-neutral-900 transition-colors" aria-label={`Shopping cart (${count === 1
+    <Link href="/wishlist" className="relative flex items-center justify-center w-10 h-10 rounded-[var(--radius)] text-muted hover:text-foreground hover:bg-surface-secondary transition-all duration-200" aria-label={`Shopping cart (${count === 1
     ? "Wishlist (1 item)"
     : `Wishlist (${count} items)`
   });`}>
       <Heart size={20} aria-hidden="true" />
-      <span className="ml-2 text-sm font-medium">Wishlist</span>
       {count > 0 && (
-        <span className="ml-1 inline-flex items-center justify-center w-5 h-5 px-1 text-xs font-bold text-white bg-red-600 rounded-full">
+        <span className="absolute -top-0.5 -right-0.5 inline-flex items-center justify-center min-w-[18px] h-[18px] px-1 text-[10px] font-bold text-white bg-red-500 rounded-full shadow-sm">
           {displayCount}
         </span>
       )}

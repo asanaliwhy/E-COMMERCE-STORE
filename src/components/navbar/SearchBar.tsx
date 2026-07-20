@@ -1,10 +1,10 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Input from "../ui/Input";
-import Button from "../ui/Button";
-import {Search} from "lucide-react";
-import type { FormEvent } from "react";
+import { Search } from "lucide-react";
+import { useDebounce } from "@/hooks/useDebounce";
+import type { ChangeEvent } from "react";
 
 interface SearchBarProps {
   onSearch: (query: string) => void;
@@ -13,25 +13,29 @@ interface SearchBarProps {
 
 export default function SearchBar({onSearch, placeholder = "Search products..."}: SearchBarProps) {
   const [searchTerm, setSearchTerm] = useState("");
-  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
-  e.preventDefault();
-  const query = searchTerm.trim();
-  if (!query) return;
-  onSearch(query);
-  setSearchTerm(query);
+  const debouncedSearch = useDebounce(searchTerm);
+  
+  useEffect(() => {
+    onSearch(debouncedSearch);
+  }, [debouncedSearch, onSearch]);
+  
+  const handleLive = (e: ChangeEvent<HTMLInputElement>) => {
+    const value = e.target.value;
+    setSearchTerm(value);
+    onSearch(value);
 }
   return (
-    <form className="relative w-full" onSubmit={handleSubmit}>
+    <div className="relative w-full group">
+      <div className="absolute left-3.5 top-1/2 -translate-y-1/2 pointer-events-none">
+        <Search className="w-4 h-4 text-muted group-focus-within:text-accent transition-colors duration-200" aria-hidden="true" />
+      </div>
       <Input
         type="search"
         value={searchTerm}
-        onChange={(e) => setSearchTerm(e.target.value)}
+        onChange={handleLive}
         placeholder={placeholder}
-        className="w-full pl-3 pr-10 py-1.5 text-sm border border-neutral-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
+        className="pl-10 pr-4 py-2 text-sm bg-surface-secondary border-transparent hover:border-border focus:bg-surface focus:border-accent"
       />
-      <Button aria-label="Search" type="submit" className="absolute right-0 top-0 h-full w-10">
-        <Search className="w-5 h-5 text-neutral-600" aria-hidden="true" />
-      </Button>
-    </form>
+    </div>
   );
 }
