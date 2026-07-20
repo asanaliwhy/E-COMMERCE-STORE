@@ -6,7 +6,7 @@ import Container from "@/components/layout/Container";
 import Link from "next/link";
 import Image from "next/image";
 import { useEffect } from "react";
-import { ClipboardList, ArrowLeft, ShoppingBag, Truck } from "lucide-react";
+import { ClipboardList, ArrowLeft, Truck } from "lucide-react";
 import Button from "@/components/ui/Button";
 
 export default function OrdersPage() {
@@ -35,7 +35,7 @@ export default function OrdersPage() {
             <div className="space-y-2">
               <h1 className="text-2xl font-bold text-foreground">No Orders Placed Yet</h1>
               <p className="text-sm text-muted">
-                You haven't made any purchases yet. Your past orders will appear here.
+                You haven&apos;t made any purchases yet. Your past orders will appear here.
               </p>
             </div>
             <Link href="/products" className="w-full sm:w-auto">

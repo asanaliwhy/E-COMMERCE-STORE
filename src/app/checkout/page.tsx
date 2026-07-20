@@ -12,7 +12,7 @@ import { ArrowLeft, ShieldCheck, CreditCard, User, Truck } from "lucide-react";
 
 export default function CheckoutPage() {
   const { items, total, itemCount, clearCart } = useCart();
-  const { isLoggedIn, user, addOrder } = useUserStore();
+  const { user, addOrder } = useUserStore();
   const router = useRouter();
 
   // Controlled Form State

@@ -31,7 +31,7 @@ export default function ProductsClient({ products }: Props) {
     });
   }, []);
 
-  const removeFilter = (key: keyof FilterState, defaultValue: any) => {
+  const removeFilter = (key: keyof FilterState, defaultValue: string | number) => {
     setFilters((prev) => ({ ...prev, [key]: defaultValue }));
   };
 
@@ -174,7 +174,7 @@ export default function ProductsClient({ products }: Props) {
               <div className="flex flex-wrap items-center gap-2">
                 {filters.search && (
                   <span className="inline-flex items-center gap-1 px-3 py-1 text-xs font-medium bg-surface-secondary border border-border/80 text-foreground rounded-full">
-                    Search: "{filters.search}"
+                    Search: {filters.search}
                     <button
                       onClick={() => removeFilter("search", "")}
                       className="hover:text-danger transition-colors cursor-pointer"
@@ -218,7 +218,7 @@ export default function ProductsClient({ products }: Props) {
               <div className="py-20 text-center bg-surface border border-border/40 rounded-[var(--radius-lg)]">
                 <h2 className="text-xl font-bold text-foreground">No Products Found</h2>
                 <p className="mt-2 text-sm text-muted max-w-sm mx-auto">
-                  We couldn't find any products matching your current filters. Try resetting them or typing a different search query.
+                  We couldn&apos;t find any products matching your current filters. Try resetting them or typing a different search query.
                 </p>
                 <Button onClick={handleResetFilters} className="mt-6 px-6 py-2.5 text-xs font-bold uppercase tracking-wider">
                   Reset Filters

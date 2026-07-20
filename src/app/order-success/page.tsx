@@ -39,8 +39,8 @@ export default function OrderSuccessPage() {
                 </div>
                 <h1 className="text-3xl font-bold">Order #{orderNumber} Placed Successfully</h1>
                 <p className="text-gray-600">Thank you for shopping with us.</p>
-                <p className="text-gray-600">We'll send you an email once your package is on its way.</p>
-                <p className="text-gray-600">Estimated delivery: 3–5 business days.</p>
+                <p className="text-gray-600">We&apos;ll send you an email once your package is on its way.</p>
+                <p className="text-gray-600">Estimated delivery: 3&ndash;5 business days.</p>
             <hr className="w-full border-gray-200" />
             <div className="flex gap-4 mt-4 justify-center w-full">
                 <Link href="/products" className="flex-1">

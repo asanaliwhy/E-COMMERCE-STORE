@@ -8,7 +8,7 @@ import Container from "@/components/layout/Container";
 import Button from "@/components/ui/Button";
 import Input from "@/components/ui/Input";
 import { toast } from "sonner";
-import { LogIn, Key, Mail, User } from "lucide-react";
+import { LogIn, Key, Mail } from "lucide-react";
 
 export default function LoginPage() {
   const router = useRouter();
@@ -94,7 +94,7 @@ export default function LoginPage() {
 
           <div className="border-t border-border/40 pt-4 text-center">
             <p className="text-xs text-muted">
-              Don't have an account?{" "}
+              Don&apos;t have an account?{" "}
               <Link href="/register" className="font-bold text-accent hover:text-accent-hover transition-colors">
                 Sign up
               </Link>

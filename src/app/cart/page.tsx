@@ -26,7 +26,7 @@ export default function CartPage() {
             <div className="space-y-2">
               <h1 className="text-2xl font-bold text-foreground">Your Cart is Empty</h1>
               <p className="text-sm text-muted">
-                Looks like you haven't added anything to your cart yet.
+                Looks like you havent added anything to your cart yet.
               </p>
             </div>
             <Link href="/products" className="w-full sm:w-auto">
